@@ -76,6 +76,8 @@ import static org.openjdk.jcstress.annotations.Expect.*;
 @JCStressTest
 
 // These are the test outcomes.
+// JCStress执行APISample_01_Simple，然后将结果和Outcome中的id做比较，如果相等会被记录
+// II_Result.toString()是将保存的执行结果以逗号分割的方式输出，ACCEPTABLE_INTERESTING表示感兴趣这样的执行结果, 生成的文件中会高亮
 @Outcome(id = "1, 1", expect = ACCEPTABLE_INTERESTING, desc = "Both actors came up with the same value: atomicity failure.")
 @Outcome(id = "1, 2", expect = ACCEPTABLE, desc = "actor1 incremented, then actor2.")
 @Outcome(id = "2, 1", expect = ACCEPTABLE, desc = "actor2 incremented, then actor1.")
@@ -86,13 +88,16 @@ public class API_01_Simple {
 
     int v;
 
+    // Actor标记的方法将会一个线程所执行
     @Actor
     public void actor1(II_Result r) {
+        // 将执行结果保存到II_Result对象的r1字段中
         r.r1 = ++v; // record result from actor1 to field r1
     }
 
     @Actor
     public void actor2(II_Result r) {
+        // 将执行结果保存到II_Result对象的r2字段中
         r.r2 = ++v; // record result from actor2 to field r2
     }
 

@@ -1,3 +1,18 @@
+# 使用教程
+
+https://segmentfault.com/a/1190000043790365   by 长安不见
+
+## 编译与运行
+1. 一定要用JDK17, 
+2. 一定要用命令行
+3. 在项目根目录执行命令 `mvn clean install -DskipTests -T 1C`
+4. 运行, 指定测试的类名称 `java -jar jcstress-samples/target/jcstress.jar -t API_01_Simple`
+5. 生成的测试结果在 项目根目录下的results文件夹中
+
+
+
+
+
 # Java Concurrency Stress (jcstress)
 
 The Java Concurrency Stress (jcstress) is the experimental harness and
